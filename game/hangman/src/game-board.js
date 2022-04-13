@@ -1,8 +1,9 @@
 import {useState} from "react";
 import LetterGrid from './letter-grid'
 import ButtonGrid from './button-grid'
+// import WordSelect from './word-select'
 
-export default function({secretWord, maxErrors,isShown}){
+export default function({secretWord, maxErrors, isShown}){
   const [guessedLetters, setGuessedLetters] = useState([]);
   const [errorCount, setErrorCount] = useState(0);
 

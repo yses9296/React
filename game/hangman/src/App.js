@@ -14,8 +14,8 @@ export default function App(){
       </div>
       <div>
         <WordSelect
-                    wordSelected
                     isShown={!secretWord}
+                    wordSelected={val => setSecretWord(val)}
         />
         <GameBoard 
                     secretWord={secretWord}
