@@ -1,25 +1,61 @@
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+class MyHeader extends Component {
+  render() {
+    return (
+      <header>
+        <h1 className="logo">{this.props.title}</h1>
+        <p>{this.props.desc}</p>
       </header>
-    </div>
-  );
+    )
+  }
 }
 
-export default App;
+class MyNav extends Component {
+  render() {
+    return (
+      <nav>
+        <ul>
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JavaScript</a></li>
+        </ul>
+      </nav>
+    )
+  }
+}
+
+class MyArticle extends Component {
+  render() {
+    return (
+      <section>
+        <article>
+            <h2>HTML</h2>
+            <p>Hypertext Markup Language</p>
+        </article>
+      </section>
+    )
+  }
+}
+
+export default class App extends Component {
+  render() {
+    return (
+      <div className="main">
+        <MyHeader title="React" desc="Single Page Application"/>
+        <MyNav/>
+        <MyArticle/>
+      </div>
+    )
+  }
+}
+
+
+
+/*
+  export default class App extends Component {}
+  
+  class App extends Component {}
+  export default App; 
+*/
