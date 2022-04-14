@@ -1,51 +1,40 @@
 import React, { Component } from 'react';
+import MyHeader from './MyHeader';
+import MyNav from './MyNav';
+import MyArticle from './MyArticle';
 import './App.css';
 
-class MyHeader extends Component {
-  render() {
-    return (
-      <header>
-        <h1 className="logo">{this.props.title}</h1>
-        <p>{this.props.desc}</p>
-      </header>
-    )
-  }
-}
 
-class MyNav extends Component {
-  render() {
-    return (
-      <nav>
-        <ul>
-            <li><a href="#">HTML</a></li>
-            <li><a href="#">CSS</a></li>
-            <li><a href="#">JavaScript</a></li>
-        </ul>
-      </nav>
-    )
-  }
-}
-
-class MyArticle extends Component {
-  render() {
-    return (
-      <section>
-        <article>
-            <h2>HTML</h2>
-            <p>Hypertext Markup Language</p>
-        </article>
-      </section>
-    )
-  }
-}
 
 export default class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      subject: {title:'React', desc:'Single Page Application'},
+      menus: [ 
+        {id:1, title:'HTML', desc:'Hypertext Markup Language'},
+        {id:2, title:'CSS', desc:'Css is for Design'},
+        {id:3, title:'Javascript', desc:'Javascript is for Interactive'}
+      ],
+      article: {title:'HTML', desc:'Hypertext Markup Language'}
+    };
+  }
+
   render() {
     return (
-      <div className="main">
-        <MyHeader title="React" desc="Single Page Application"/>
-        <MyNav/>
-        <MyArticle/>
+      <div className="App">
+        <MyHeader 
+                  title={this.state.subject.title} 
+                  desc={this.state.subject.desc} 
+        />
+        <MyNav
+                data={this.state.menus}
+        />
+        <MyArticle 
+                  title={this.state.article.title}
+                  desc={this.state.article.desc} 
+        />
       </div>
     )
   }
