@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 
 export default class MyArticle extends Component {
     render() {
+        console.log('MyArticle.js 실행됨');
+
         return (
         <section>
             <article>
