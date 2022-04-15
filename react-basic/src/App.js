@@ -35,14 +35,18 @@ export default class App extends Component {
         반복문 >> 클릭한 요소의 data-id의 값이 menus의 각 항목들에 존재하는지
       */ 
       var i = 0;
-      while (this.state.menus[i].id == this.state.selected_id){ 
+      while (i < this.state.menus.length){ 
+        var data = this.state.menus[i];
 
+        if(data.id === this.state.selected_id){
+          _title = data.title;
+          _desc = data.desc;
+
+          break;
+        }
+        
         i++;
       }
-      
-
-      _title = this.state.menus[0].title;
-      _desc = this.state.menus[0].desc;
     }
 
     return (
@@ -78,6 +82,7 @@ export default class App extends Component {
                 data={this.state.menus}
                 onChangePage = {
                   function(id){
+                    debugger;
                     this.setState({
                       mode: 'read',
                       selected_id: Number(id) //==ParseInt(id)
