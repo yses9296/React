@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import MyHeader from './MyHeader';
 import MyNav from './MyNav';
 import MyArticle from './MyArticle';
+import Controls from './Controls';
 import './App.css';
 
 export default class App extends Component {
@@ -24,6 +25,8 @@ export default class App extends Component {
 
   render() {
     console.log('App.js 실행됨');
+
+    //mode MyNav
     var _title, _desc = null;
 
     if(this.state.mode === 'welcome'){
@@ -47,6 +50,15 @@ export default class App extends Component {
         
         i++;
       }
+    }
+    else if(this.state.mode === 'create'){
+
+    }
+    else if(this.state.mode === 'update'){
+
+    }
+    else if(this.state.mode === 'delete'){
+
     }
 
     return (
@@ -82,7 +94,7 @@ export default class App extends Component {
                 data={this.state.menus}
                 onChangePage = {
                   function(id){
-                    debugger;
+                    // debugger;
                     this.setState({
                       mode: 'read',
                       selected_id: Number(id) //==ParseInt(id)
@@ -93,6 +105,17 @@ export default class App extends Component {
         <MyArticle 
                   title={_title}
                   desc={_desc} 
+        />
+
+        <Controls
+                  onChangePage = {
+                    function(_mode){
+                      this.setState({
+                        mode: _mode
+                      });
+                    }.bind(this)
+                  }   
+                  
         />
       </div>
     )
