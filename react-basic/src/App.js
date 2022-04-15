@@ -3,6 +3,8 @@ import MyHeader from './MyHeader';
 import MyNav from './MyNav';
 import MyArticle from './MyArticle';
 import Controls from './Controls';
+import CreateArticle from './CreateArticle';
+import ReadArticle from './ReadArticle';
 import './App.css';
 
 export default class App extends Component {
@@ -11,6 +13,7 @@ export default class App extends Component {
     super(props);
     this.state = {
       mode: 'welcome',
+      article: '',
       selected_id: null,
       welcome: {title:'Welcome', desc:'Welcome to React'},
       subject: {title:'React', desc:'Single Page Application'},
@@ -27,11 +30,12 @@ export default class App extends Component {
     console.log('App.js 실행됨');
 
     //mode MyNav
-    var _title, _desc = null;
+    var _title, _desc, _article = null;
 
     if(this.state.mode === 'welcome'){
       _title = this.state.welcome.title;
       _desc = this.state.welcome.desc;
+      _article = <MyArticle title={_title} desc={_desc}/>
     }
     else if(this.state.mode === 'read'){
       /*
@@ -50,12 +54,13 @@ export default class App extends Component {
         
         i++;
       }
+      _article = <MyArticle title={_title} desc={_desc}/>;
     }
     else if(this.state.mode === 'create'){
-
+      _article = <CreateArticle title={_title} desc={_desc}/>
     }
     else if(this.state.mode === 'update'){
-
+      _article = <ReadArticle title={_title} desc={_desc}/>
     }
     else if(this.state.mode === 'delete'){
 
@@ -102,10 +107,8 @@ export default class App extends Component {
                   }.bind(this) //App.js 상단과 연결
                 } 
         />
-        <MyArticle 
-                  title={_title}
-                  desc={_desc} 
-        />
+        {/* <MyArticle title={_title} desc={_desc}/> */}
+        {_article}
 
         <Controls
                   onChangePage = {
