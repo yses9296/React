@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import MyHeader from './MyHeader';
-import MyNav from './MyNav';
-import MyArticle from './MyArticle';
-import Controls from './Controls';
-import CreateArticle from './CreateArticle';
-import ReadArticle from './ReadArticle';
+import MyHeader from './app/MyHeader';
+import MyNav from './app/MyNav';
+import MyArticle from './app/MyArticle';
+import Controls from './app/Controls';
+import CreateArticle from './app/CreateArticle';
+import ReadArticle from './app/ReadArticle';
 import './App.css';
 
 export default class App extends Component {
