@@ -8,7 +8,23 @@ export default class CreateArticle extends Component {
         <section>
             <article>
                 <h2>Create Article</h2>
-                <p></p>
+                <form className='createForm' action="/create_process" method="post"
+                    onSubmit={function(e){
+                        e.preventDefault();
+                        // debugger;
+                        this.props.onSubmit(e.target.title.value, e.target.desc.value);
+                    }.bind(this)
+                }>
+                    <p>
+                        <input type="text" name="title" placeholder="title"/>
+                    </p>
+                    <p>
+                        <textarea name="desc" placeholder="description"/>
+                    </p>
+                    <p>
+                        <input type="submit" value="Submit" className='submit'/>
+                    </p>
+                </form>
             </article>
         </section>
         )

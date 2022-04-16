@@ -22,11 +22,12 @@ a {
 .controls > ul > li {
   display: inline-block;
   margin-right: 10px;
+  text-transform: uppercase;
 }
 .controls > ul > li > a {
   border: 1px solid #dbdbdb;
   display: inline-block;
-  width: 70px;
+  width: 80px;
   height: 30px;
   text-align: center;
   font-size: 18px;
@@ -36,10 +37,20 @@ a {
 .controls > ul > li > input {
   border: 1px solid #dbdbdb;
   background-color: #fff;
-  width: 70px;
+  width: 80px;
   height: 30px;
   text-align: center;
-  font-size: 18px;
+  font-size: 17px;
   line-height: 30px;
   font-weight: 400;
+  text-transform: uppercase;
+}
+
+.createForm > p > input {width: 200px;}
+.createForm > p > textarea {width: 200px; height: 80px; resize: none;}
+
+.createForm .submit {
+  width: 80px; height: 25px; 
+  font-size: 15px; line-height: 25px; 
+  text-align: center; font-weight: 600;
 }

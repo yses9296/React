@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import MyHeader from './app/MyHeader';
-import MyNav from './app/MyNav';
-import MyArticle from './app/MyArticle';
-import Controls from './app/Controls';
-import CreateArticle from './app/CreateArticle';
-import ReadArticle from './app/ReadArticle';
+import MyHeader from './app_js/MyHeader';
+import MyNav from './app_js/MyNav';
+import MyArticle from './app_js/MyArticle';
+import Controls from './app_js/Controls';
+import CreateArticle from './app_js/CreateArticle';
+import ReadArticle from './app_js/ReadArticle';
 import './App.css';
 
 export default class App extends Component {
@@ -12,7 +12,7 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      mode: 'welcome',
+      mode: 'create',
       article: '',
       selected_id: null,
       welcome: {title:'Welcome', desc:'Welcome to React'},
@@ -57,7 +57,11 @@ export default class App extends Component {
       _article = <MyArticle title={_title} desc={_desc}/>;
     }
     else if(this.state.mode === 'create'){
-      _article = <CreateArticle title={_title} desc={_desc}/>
+      _article = <CreateArticle 
+                    onSubmit={function(_title, _desc){
+                      
+                    }.bind(this)
+                  }/>
     }
     else if(this.state.mode === 'update'){
       _article = <ReadArticle title={_title} desc={_desc}/>
