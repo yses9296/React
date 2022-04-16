@@ -11,6 +11,8 @@ export default class App extends Component {
 
   constructor(props) {
     super(props);
+    this.current_id = 3; //불변변수
+
     this.state = {
       mode: 'create',
       article: '',
@@ -21,8 +23,7 @@ export default class App extends Component {
         {id:1, title:'HTML', desc:'Hypertext Markup Language'},
         {id:2, title:'CSS', desc:'Css is for Design'},
         {id:3, title:'Javascript', desc:'Javascript is for Interactive'}
-      ],
-    
+      ],    
     };
   }
 
@@ -58,8 +59,17 @@ export default class App extends Component {
     }
     else if(this.state.mode === 'create'){
       _article = <CreateArticle 
-                    onSubmit={function(_title, _desc){
-                      
+                    onSubmit={function(_title1, _desc1){
+
+                      this.current_id += 1;
+
+                      this.state.menus.push(
+                        {id: this.current_id, title: _title1, desc: _desc1}
+                      );
+                        //menus값 setState로 새로운 값으로 갱신
+                      this.setState({
+                        menus: this.state.menus
+                      })
                     }.bind(this)
                   }/>
     }
