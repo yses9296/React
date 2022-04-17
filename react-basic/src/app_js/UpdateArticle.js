@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 export default class UpdateArticle extends Component {
     render() {
         console.log('UpdateArticle.js 실행됨');
-        var data = this.props.data;
 
+        
         return (
         <section>
             <article>
@@ -17,10 +17,10 @@ export default class UpdateArticle extends Component {
                     }.bind(this)
                 }>
                     <p>
-                        <input type="text" name="title" placeholder="title" value={this.props.data.title}/>
+                        <input type="text" name="title" placeholder="title" value={this.props.title}/>
                     </p>
                     <p>
-                        <textarea name="desc" placeholder="description" value={this.props.data.desc}/>
+                        <textarea name="desc" placeholder="description" value={this.props.desc}/>
                     </p>
                     <p>
                         <input type="submit" value="Submit" className='submit'/>

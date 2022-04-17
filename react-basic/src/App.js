@@ -38,23 +38,10 @@ export default class App extends Component {
       _article = <MyArticle title={_title} desc={_desc}/>
     }
     else if(this.state.mode === 'read'){
-      /*
-        반복문 >> 클릭한 요소의 data-id의 값이 menus의 각 항목들에 존재하는지
-      */ 
-      var i = 0;
-      while (i < this.state.menus.length){ 
-        var data = this.state.menus[i];
+      var _result = this. getReadArticle();
+      //_result >> {id:1, title:'HTML', desc:'Hypertext Markup Language'}
 
-        if(data.id === this.state.selected_id){
-          _title = data.title;
-          _desc = data.desc;
-
-          break;
-        }
-        
-        i++;
-      }
-      _article = <MyArticle title={_title} desc={_desc}/>;
+      _article = <MyArticle title={_result.title} desc={_result.desc}/>;
     }
     else if(this.state.mode === 'create'){
       _article = <CreateArticle 
@@ -95,22 +82,9 @@ export default class App extends Component {
                   }/>
     }
     else if(this.state.mode === 'update'){
-      var i = 0;
-      while (i < this.state.menus.length){ 
-        var data = this.state.menus[i];
-
-        if(data.id === this.state.selected_id){
-          _title = data.title;
-          _desc = data.desc;
-
-          break;
-        }
-        
-        i++;
-      }
-
+      var _result = this. getReadArticle();
       _article = <UpdateArticle 
-                       title={_title} desc={_desc}
+                      title={_result.title} desc={_result.desc}
                       onSubmit={function(_title1, _desc1){
 
                       this.current_id += 1;
@@ -124,14 +98,31 @@ export default class App extends Component {
                       })
                     }.bind(this)
                   }/>
-
-
     }
     else if(this.state.mode === 'delete'){
 
     }
 
     return _article;
+  }
+
+  getReadArticle(){
+      /*
+        반복문 >> 클릭한 요소의 data-id의 값이 menus의 각 항목들에 존재하는지
+      */ 
+        var i = 0;
+        while (i < this.state.menus.length){ 
+          var data = this.state.menus[i];
+  
+          if(data.id === this.state.selected_id){
+            // _title = data.title;
+            // _desc = data.desc;
+            return data;
+            break;
+          }
+          
+          i++;
+        }
   }
 
   render() {
