@@ -46,10 +46,20 @@ a {
   text-transform: uppercase;
 }
 
+
 .createForm > p > input {width: 200px;}
 .createForm > p > textarea {width: 200px; height: 80px; resize: none;}
 
 .createForm .submit {
+  width: 80px; height: 25px; 
+  font-size: 15px; line-height: 25px; 
+  text-align: center; font-weight: 600;
+}
+
+.updateForm > p > input {width: 200px;}
+.updateForm > p > textarea {width: 200px; height: 80px; resize: none;}
+
+.updateForm .submit {
   width: 80px; height: 25px; 
   font-size: 15px; line-height: 25px; 
   text-align: center; font-weight: 600;

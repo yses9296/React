@@ -5,6 +5,7 @@ import MyArticle from './app_js/MyArticle';
 import Controls from './app_js/Controls';
 import CreateArticle from './app_js/CreateArticle';
 import ReadArticle from './app_js/ReadArticle';
+import UpdateArticle from './app_js/UpdateArticle';
 import './App.css';
 
 export default class App extends Component {
@@ -27,9 +28,7 @@ export default class App extends Component {
     };
   }
 
-  render() {
-    console.log('App.js 실행됨');
-
+  getArticles(){
     //mode MyNav
     var _title, _desc, _article = null;
 
@@ -68,10 +67,25 @@ export default class App extends Component {
                       //   {id: this.current_id, title: _title1, desc: _desc1}
                       // );
 
-                      //2-concat (var c = 대상.concat(값)) >> 복사한 값에 추가 >> MyNav.js에서 shouldComponentUpdate 함수에서 비교 가능
-                      var _menus = this.state.menus.concat(
-                        {id: this.current_id, title: _title1, desc: _desc1}
-                      );
+                      //2-concat (var c = 대상.concat(값)) 
+                      // >> 복사한 값에 추가 >> MyNav.js에서 shouldComponentUpdate 함수에서 비교 가능
+                      // var _menus = this.state.menus.concat(
+                      //   {id: this.current_id, title: _title1, desc: _desc1}
+                      // );
+
+                      //3.Array.from()
+                      //3-1. 복사본 생성 후 push
+
+                      //3-2. Object.assign({},복사할 대상) >> assign() 객체 복사, (순서 주의, 순서 상관 O)
+                      //ex) 
+                      //   var a = {name: 'react', desc='awesome'};
+                      //   var b = Object.assign({}, a);
+                      //   var c = Object.assign({skill:'상'}, b);
+                      
+                      var _menus = Array.from(this.state.menus);
+                      _menus.push(
+                          {id: this.current_id, title: _title1, desc: _desc1}
+                        );
 
                       //menus값 setState로 새로운 값으로 갱신
                       this.setState({
@@ -81,11 +95,47 @@ export default class App extends Component {
                   }/>
     }
     else if(this.state.mode === 'update'){
-      _article = <ReadArticle title={_title} desc={_desc}/>
+      var i = 0;
+      while (i < this.state.menus.length){ 
+        var data = this.state.menus[i];
+
+        if(data.id === this.state.selected_id){
+          _title = data.title;
+          _desc = data.desc;
+
+          break;
+        }
+        
+        i++;
+      }
+
+      _article = <UpdateArticle 
+                       title={_title} desc={_desc}
+                      onSubmit={function(_title1, _desc1){
+
+                      this.current_id += 1;
+
+                      var _menus = Array.from(this.state.menus);
+                      
+                      _menus.push( {id: this.current_id, title: _title1, desc: _desc1} );
+
+                      this.setState({
+                        menus: _menus
+                      })
+                    }.bind(this)
+                  }/>
+
+
     }
     else if(this.state.mode === 'delete'){
 
     }
+
+    return _article;
+  }
+
+  render() {
+    console.log('App.js 실행됨');
 
     return (
       <div className="App">
@@ -128,8 +178,9 @@ export default class App extends Component {
                   }.bind(this) //App.js 상단과 연결
                 } 
         />
+
         {/* <MyArticle title={_title} desc={_desc}/> */}
-        {_article}
+        {this.getArticles()}
 
         <Controls
                   onChangePage = {
@@ -144,6 +195,7 @@ export default class App extends Component {
       </div>
     )
   }
+
 }
 
 
