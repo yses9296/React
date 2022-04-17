@@ -84,7 +84,7 @@ export default class App extends Component {
     else if(this.state.mode === 'update'){
       var _result = this. getReadArticle();
       _article = <UpdateArticle 
-                      title={_result.title} desc={_result.desc}
+                      data={_result}
                       onSubmit={function(_title1, _desc1){
 
                       this.current_id += 1;
