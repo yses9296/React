@@ -14,7 +14,7 @@ export default class App extends Component {
     this.current_id = 3; //불변변수
 
     this.state = {
-      mode: 'create',
+      mode: 'welcome',
       article: '',
       selected_id: null,
       welcome: {title:'Welcome', desc:'Welcome to React'},
@@ -63,12 +63,19 @@ export default class App extends Component {
 
                       this.current_id += 1;
 
-                      this.state.menus.push(
+                      //1-push
+                      // this.state.menus.push(
+                      //   {id: this.current_id, title: _title1, desc: _desc1}
+                      // );
+
+                      //2-concat (var c = 대상.concat(값)) >> 복사한 값에 추가 >> MyNav.js에서 shouldComponentUpdate 함수에서 비교 가능
+                      var _menus = this.state.menus.concat(
                         {id: this.current_id, title: _title1, desc: _desc1}
                       );
-                        //menus값 setState로 새로운 값으로 갱신
+
+                      //menus값 setState로 새로운 값으로 갱신
                       this.setState({
-                        menus: this.state.menus
+                        menus: _menus
                       })
                     }.bind(this)
                   }/>

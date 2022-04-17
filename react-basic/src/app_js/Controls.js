@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 
 export default class Controls extends Component {
   render() {
+    console.log('Controls.js 실행됨');
     return (
       <div className="controls">
             <ul>
