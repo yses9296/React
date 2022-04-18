@@ -12,7 +12,11 @@ export default class CreateArticle extends Component {
                     onSubmit={function(e){
                         e.preventDefault();
                         // debugger;
-                        this.props.onSubmit(e.target.title.value, e.target.desc.value);
+                        this.props.onSubmit(
+                            e.target.title.value, 
+                            e.target.desc.value,  
+                            e.target.rate.value
+                        );
                     }.bind(this)
                 }>
                     <p>
@@ -20,6 +24,9 @@ export default class CreateArticle extends Component {
                     </p>
                     <p>
                         <textarea name="desc" placeholder="description"/>
+                    </p>
+                    <p>
+                        <input type="number" name="rate" min="0" max="5"/>
                     </p>
                     <p>
                         <input type="submit" value="Submit" className='submit'/>

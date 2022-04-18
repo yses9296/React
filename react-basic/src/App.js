@@ -21,9 +21,9 @@ export default class App extends Component {
       welcome: {title:'Welcome', desc:'Welcome to React'},
       subject: {title:'React', desc:'Single Page Application'},
       menus: [ 
-        {id:1, title:'HTML', desc:'Hypertext Markup Language'},
-        {id:2, title:'CSS', desc:'Css is for Design'},
-        {id:3, title:'Javascript', desc:'Javascript is for Interactive'}
+        {id:1, title:'HTML', desc:'Hypertext Markup Language', rate: 1},
+        {id:2, title:'CSS', desc:'Css is for Design', rate: 2},
+        {id:3, title:'Javascript', desc:'Javascript is for Interactive', rate: 3}
       ],    
     };
   }
@@ -38,14 +38,14 @@ export default class App extends Component {
       _article = <MyArticle title={_title} desc={_desc}/>
     }
     else if(this.state.mode === 'read'){
-      var _result = this. getReadArticle();
-      //_result >> {id:1, title:'HTML', desc:'Hypertext Markup Language'}
-
-      _article = <MyArticle title={_result.title} desc={_result.desc}/>;
+      var _result = this.getReadArticle();
+      //_result >> {id:1, title:'HTML', desc:'Hypertext Markup Language, rate: 1'}
+      
+      _article = <MyArticle title={_result.title} desc={_result.desc} rate={_result.rate}/>;
     }
     else if(this.state.mode === 'create'){
       _article = <CreateArticle 
-                    onSubmit={function(_title1, _desc1){
+                    onSubmit={function(_title1, _desc1, _rate1){
 
                       this.current_id += 1;
 
@@ -71,37 +71,46 @@ export default class App extends Component {
                       
                       var _menus = Array.from(this.state.menus);
                       _menus.push(
-                          {id: this.current_id, title: _title1, desc: _desc1}
+                          {id: this.current_id, title: _title1, desc: _desc1, rate: _rate1}
                         );
 
                       //menus값 setState로 새로운 값으로 갱신
                       this.setState({
-                        menus: _menus
-                      })
+                        menus: _menus,
+                        mode: 'read'
+                      });
                     }.bind(this)
                   }/>
     }
     else if(this.state.mode === 'update'){
-      var _result = this. getReadArticle();
+      var _result = this.getReadArticle();
+      //_result >> {id:1, title:'HTML', desc:'Hypertext Markup Language, rate: 1'}
+
       _article = <UpdateArticle 
                       data={_result}
-                      onSubmit={function(_title1, _desc1){
-
-                      this.current_id += 1;
+                      onSubmit={function(_id1, _title1, _desc1, _rate1){
 
                       var _menus = Array.from(this.state.menus);
                       
-                      _menus.push( {id: this.current_id, title: _title1, desc: _desc1} );
-
+                      var i = 0;
+                      while(i < _menus.length){
+                        if(_menus[i].id === _id1){
+                          _menus[i] = {id: _id1, title: _title1, desc: _desc1, rate: _rate1};
+                          break;
+                        }
+                        i++;
+                      }
+                      
                       this.setState({
-                        menus: _menus
+                        menus: _menus,
+                        mode: 'read'
                       })
                     }.bind(this)
                   }/>
     }
-    else if(this.state.mode === 'delete'){
+    // else if (this.state.mode === 'delete'){
 
-    }
+    // }
 
     return _article;
   }
@@ -193,15 +202,20 @@ export default class App extends Component {
                             
                             i++;
                           }
+                          this.setState({
+                            menus: _menus
+                          });
                           alert('삭제되었습니다.');
                         }
+                        this.setState({
+                          mode: 'welcome'
+                        });
                       }
-
-                      this.setState({
-                        mode: _mode,
-                        menus: _menus
-                      });
-
+                      else {
+                        this.setState({
+                          mode: _mode
+                        });
+                      }
                     }.bind(this)
                   }   
                   

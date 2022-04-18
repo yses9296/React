@@ -7,8 +7,9 @@ export default class MyArticle extends Component {
         return (
         <section>
             <article>
-                <h2>{this.props.title}</h2>
-                <p>{this.props.desc}</p>
+                <h2>[Language] {this.props.title}</h2>
+                <p>Description: {this.props.desc}</p>
+                <p>Rate: {this.props.rate}</p>
             </article>
         </section>
         )

@@ -4,14 +4,16 @@ export default class UpdateArticle extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            id : this.props.data.id,
             title : this.props.data.title,
             desc : this.props.data.desc,
+            rate : this.props.data.rate            
         }
     }
 
     render() {
         console.log('UpdateArticle.js 실행됨');
-        var data = this.props._result;
+        // var data = this.props._result;
 
         return (
         <section>
@@ -21,9 +23,20 @@ export default class UpdateArticle extends Component {
                     onSubmit={function(e){
                         e.preventDefault();
                         // debugger;
-                        this.props.onSubmit(e.target.title.value, e.target.desc.value);
+                        this.props.onSubmit(
+                            // e.target.id.value,
+                            // e.target.title.value,
+                            // e.target.desc.value,
+                            // e.target.rate.value
+                            this.state.id,
+                            this.state.title,
+                            this.state.desc,
+                            this.state.rate
+                        );
                     }.bind(this)
                 }>
+                    <input type="hidden" name="id" value={this.state.id}/>
+
                     <p>
                         <input type="text" name="title" placeholder="title" 
                                 value={this.state.title} 
@@ -37,6 +50,14 @@ export default class UpdateArticle extends Component {
                                     value={this.state.desc}
                                     onChange={function(e){
                                         this.setState({desc: e.target.value})
+                                    }.bind(this)
+                        }/>
+                    </p>
+                    <p>
+                        <input type="number" name="rate" min="0" max="5"
+                                    value={this.state.rate}
+                                    onChange={function(e){
+                                        this.setState({rate: e.target.value})
                                     }.bind(this)
                         }/>
                     </p>

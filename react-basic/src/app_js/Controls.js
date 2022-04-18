@@ -27,7 +27,7 @@ export default class Controls extends Component {
                     </a>
                 </li>
                 <li>
-                    <input type="button" value="delete" 
+                    <input type="button" className="btn" value="delete" 
                             onClick={
                                 function(e){
                                     e.preventDefault();
