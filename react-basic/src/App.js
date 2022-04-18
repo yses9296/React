@@ -176,9 +176,32 @@ export default class App extends Component {
         <Controls
                   onChangePage = {
                     function(_mode){
+                      if(_mode == 'delete'){
+                        if(window.confirm('정말 삭제할까요?')){
+                          var _menus = Array.from(this.state.menus);
+
+                          var i = 0;
+                          while (i < this.state.menus.length){ 
+                            var data = this.state.menus[i];
+                    
+                            if(data.id === this.state.selected_id){
+                              
+                              //배열에서 대상 삭제 >> 대상.splice(2,3) 대상의 인덱스번호 2번째부터 3개 요소를 삭제
+                              _menus.splice(i, 1);
+                              break;
+                            }
+                            
+                            i++;
+                          }
+                          alert('삭제되었습니다.');
+                        }
+                      }
+
                       this.setState({
-                        mode: _mode
+                        mode: _mode,
+                        menus: _menus
                       });
+
                     }.bind(this)
                   }   
                   
