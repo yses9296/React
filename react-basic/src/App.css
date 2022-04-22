@@ -1,69 +1,7 @@
-/* reset */
-body {
-  margin: 0;
-  padding: 0 20px;
-}
+* {margin: 0; padding: 0;}
 
-input, a {
-  font-style: normal;
-  text-decoration: none;
-  color: #333;
-}
-
-li {
-  list-style: none;
-}
-
-
-/* controls */
-.controls {
-  display: flex;
-  gap: 20px;
-}
-/* .controls a, .controls input {
-  display: block;
-  border: 1px solid #dbdbdb;
-  background: #ebebeb;  
-  padding: 5px 10px;
-  color: #444;
-  border-radius: 3px;
-  font-size: .8em;
-  line-height: 20px;
-  text-transform: uppercase;
-} */
-
-.controls > ul > li {
-  display: inline-block;
-  margin-right: 10px;
-}
-.controls a, .controls input {
-  border: 1px solid #dbdbdb;
-  background-color: #fff;
-  display: inline-block;
-  width: 80px;
-  height: 30px;
-  text-align: center;
-  font-size: 16px;
-  line-height: 30px;
-  font-weight: 400;
-  text-transform: uppercase;
-}
-
-
-.createForm > p > input {width: 200px;}
-.createForm > p > textarea {width: 200px; height: 80px; resize: none;}
-
-.createForm .submit {
-  width: 80px; height: 25px; 
-  font-size: 15px; line-height: 25px; 
-  text-align: center; font-weight: 600;
-}
-
-.updateForm > p > input {width: 200px;}
-.updateForm > p > textarea {width: 200px; height: 80px; resize: none;}
-
-.updateForm .submit {
-  width: 80px; height: 25px; 
-  font-size: 15px; line-height: 25px; 
-  text-align: center; font-weight: 600;
+.container {
+  border: 2px solid blue;
+  margin: 10px;
+  padding: 5px;
 }
