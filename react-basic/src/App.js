@@ -15,15 +15,31 @@ function App(){
 /* 함수형이 훨씬 깔끔
    props를 사용하기 위해선 함수 매개변수 필요 */
 function FuncComp(props){
+  //useState - 공식 (선호)
   const [number, setNumber] = useState(props.initNumer);
+  const [date, setDate] = useState((new Date()).toString());
+  //new Date() >>현재 날짜
+  //(new Date()).toString() >>현재 날짜 문자변환
+
+  //useState - 또 다른 방법
+  /* var numberState = useState(props.initNumer);
+     var number = numberState[0];
+     var setNumber = numberState[1];
+  */
 
   return(
     <div className="container">
       <h2>Function Style Component</h2>
       <p>Number : {number}</p>
-      <input type="button" value="random" onClick={
+      <p>Date : {date}</p>
+      <input type="button" value="random" className="btn" onClick={
         function(){
           setNumber(Math.random());
+        }
+      }></input>
+      <input type="button" value="update" className="btn" onClick={
+        function(){
+          setDate( (new Date()).toString() );
         }
       }></input>
     </div>
@@ -32,7 +48,8 @@ function FuncComp(props){
 
 class ClassComp extends Component {
   state = {
-    number: this.props.initNumer
+    number: this.props.initNumer,
+    date: (new Date()).toString()
   }
 
   render() {
@@ -40,9 +57,15 @@ class ClassComp extends Component {
       <div className="container">
         <h2>Class Style Component</h2>
         <p>Number : {this.state.number}</p>
-        <input type="button" value="random" onClick={
+        <p>Date : {this.state.date}</p>
+        <input type="button" value="random" className="btn" onClick={
           function(){
             this.setState({ number: Math.random() });
+          }.bind(this)
+        }></input>
+        <input type="button" value="update" className="btn" onClick={
+          function(){
+            this.setState({ date: (new Date()).toString() });
           }.bind(this)
         }></input>
       </div>
