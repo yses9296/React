@@ -1,0 +1,16 @@
+* {margin: 0; padding: 0;}
+
+.container {
+  border: 2px solid blue;
+  margin: 10px;
+  padding: 5px;
+}
+
+.btn {
+  padding: 5px 10px;
+  margin: 5px;
+  background: none;
+  border: 1px solid #dbdbdb;
+  text-transform: uppercase;
+  font-size: .8em;
+}

@@ -6,11 +6,7 @@
   padding: 5px;
 }
 
-.btn {
-  padding: 5px 10px;
-  margin: 5px;
-  background: none;
-  border: 1px solid #dbdbdb;
-  text-transform: uppercase;
-  font-size: .8em;
+.swiper-slide  {
+  height: 300px;
+  background: #ccc;
 }
