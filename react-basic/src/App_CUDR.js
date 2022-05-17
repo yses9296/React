@@ -6,7 +6,7 @@ import Controls from './app_js/Controls';
 import CreateArticle from './app_js/CreateArticle';
 import ReadArticle from './app_js/ReadArticle';
 import UpdateArticle from './app_js/UpdateArticle';
-import './App.css';
+import './App_CUDR.css';
 
 export default class App extends Component {
 

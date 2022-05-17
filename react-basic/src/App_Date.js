@@ -1,16 +1,34 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
-import './App.css';
+import { useState,useEffect } from 'react';
+import './App_Date.css';
 
 function App(){
+  const [funcShow, setFuncShow] = useState(true);
+  const [classShow, setClassShow] = useState(true);
+
   return (
     <div className="container">
       <h1>Hello World</h1>
-      <FuncComp initNumer={2}></FuncComp>
-      <ClassComp initNumer={2}></ClassComp>
+      <input type="button" value="remove func" onClick={
+        function(){
+          setFuncShow(false);
+        }
+      }></input>
+      <input type="button" value="remove class" onClick={
+        function(){
+          setClassShow(false);
+        }
+        }></input>
+      {/* funcShow가 true면 <FuncComp initNumer={2}></FuncComp> // false면 null */}
+      { funcShow ? <FuncComp initNumer={2}></FuncComp> : null }
+      { classShow ? <ClassComp initNumer={2}></ClassComp> : null }
+      {/* <FuncComp initNumer={2}></FuncComp>
+      <ClassComp initNumer={2}></ClassComp> */}
     </div>
   );
 }
+
+var func_id = 0;
 
 /* 함수형이 훨씬 깔끔
    props를 사용하기 위해선 함수 매개변수 필요 */
@@ -26,6 +44,18 @@ function FuncComp(props){
      var number = numberState[0];
      var setNumber = numberState[1];
   */
+
+  // useEffect
+  useEffect(function(){
+  
+    console.log('func useEffect', ++func_id);
+    document.title= number+date;
+    //final - App 컴포넌트가 모두 실행된 후에 할 일..
+    return function(){
+      console.log('func useEffect return', ++func_id);
+      //final 작업 바로 전에 할 일...
+    }
+  })
 
   return(
     <div className="container">
@@ -46,11 +76,34 @@ function FuncComp(props){
   );
 }
 
+
+// 클래스형
 class ClassComp extends Component {
   state = {
     number: this.props.initNumer,
     date: (new Date()).toString()
   }
+
+  componentWillMount(){
+    console.log("componentWillMount is worked");
+  }
+  componentDidMount(){
+    console.log("componentDidMount is worked");
+  }
+  componentWillUnmount(){
+    console.log("componentWillUnmount is worked");
+  }
+  shouldComponentUpdate(nextProps, nextState){
+    console.log("shouldComponentUpdate is worked");
+    return true;
+  }
+  componentWillUpdate(nextProps, nextState){
+    console.log("componentWillUpdate is worked");
+  }
+  componentDidUpdate(nextProps, nextState){
+    console.log("componentDidUpdate is worked");
+  }
+
 
   render() {
     return (
