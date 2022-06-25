@@ -15,6 +15,7 @@ nav {
 ul {
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 ul li {
   list-style: none;

@@ -75,7 +75,7 @@ class Nav extends Component {
   }
 }
 
-class Article extends Component{
+class Article extends Component{ //Presentational Component 내용을 출력만 하는 컴포넌트. 
 
   render(){
     return(
@@ -103,7 +103,8 @@ class App extends Component { //to use constructor, need to be class component
 
         <Nav
           onClick = {id => {
-            fetch('./data/'+ id +'.json')
+            // fetch('./data/'+ id +'.json')
+            fetch(`./data/${id}.json`)
             .then( result => result.json() )
             .then((data) => {
               this.setState({
