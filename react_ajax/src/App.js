@@ -44,7 +44,18 @@ class Nav extends Component {
     var newArr = 대상.map(item => (반복할 일..))
     */
     listTages = currentList.map(item => (
-      <li key={item.id}><a href={item.id}>{item.title}</a></li>
+      <li key={item.id}>
+        <a href={item.id} data-id={item.id} 
+          onClick={e => {
+            e.preventDefault();
+            this.props.onClick(e.target.dataset.id);
+          }
+        }>
+
+          {item.title}
+
+        </a>
+      </li>
     ));
     
     return (
@@ -90,10 +101,24 @@ class App extends Component { //to use constructor, need to be class component
       <div className="App">
         <h1>Web</h1>
 
-        <Nav/>
+        <Nav
+          onClick = {id => {
+            fetch('./data/'+ id +'.json')
+            .then( result => result.json() )
+            .then((data) => {
+              this.setState({
+                article: {
+                  title: data.title,
+                  desc: data.desc
+                }
+              })//setState
+            });//then(data)
+        
+          }}
+        />
         <Article 
           title = {this.state.article.title}
-          desc={this.state.article.desc}
+          desc = {this.state.article.desc}
         />
 
       </div>
