@@ -23,24 +23,39 @@ class Nav extends Component {
   render() {
 
     let listTages = [];
-    var list = this.state.list;
+    var currentList = this.state.list;
     /* 
     this.state.list
-    for 반복문으로 
+    << for 반복문으로 >>
     */
-    for (let i = 0; i < list.length; i++ ){
+    /*
+    for (let i = 0; i < currentList.length; i++ ){
       listTages.push(
-        <li><a href={list[i].id}>{list[i].title}</a></li>
+        <li key={currentList[i].id}><a href={currentList[i].id}>{currentList[i].title}</a></li>
       )
     }
+    */
+
+    /* 
+    << map >>
+    대상의 값들마다 할 일 새로운 배열 담는다.
+    each + var newArr =  Array.from(oldArr)
+
+    var newArr = 대상.map(item => (반복할 일..))
+    */
+    listTages = currentList.map(item => (
+      <li key={item.id}><a href={item.id}>{item.title}</a></li>
+    ));
     
     return (
 
          <nav>
           <ul>
-            {/* <li><a href="1">HTML</a></li>
+            {/* 
+            <li><a href="1">HTML</a></li>
             <li><a href="2">CSS</a></li>
-            <li><a href="3">JS</a></li> */}
+            <li><a href="3">JS</a></li> 
+            */}
             {listTages}
           </ul>
         </nav>
@@ -49,19 +64,41 @@ class Nav extends Component {
   }
 }
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Web</h1>
+class Article extends Component{
 
-      <Nav/>
-      
+  render(){
+    return(
       <article>
-        <h2>Welcome</h2>
-        <p>Hello, React &amp; Ajax</p>
+        <h2>{this.props.title}</h2>
+        <p>{this.props.desc}</p>
       </article>
-    </div>
-  );
+    )
+  }
+
+}
+
+class App extends Component { //to use constructor, need to be class component
+  constructor(props){
+    super(props);
+    this.state = {
+      article: {title: 'Welcome', desc:'Hello, React & Ajax'} //initialize
+    }
+  }
+
+  render(){
+    return (
+      <div className="App">
+        <h1>Web</h1>
+
+        <Nav/>
+        <Article 
+          title = {this.state.article.title}
+          desc={this.state.article.desc}
+        />
+
+      </div>
+    );
+  }
 }
 
 export default App;
