@@ -2,6 +2,7 @@ import './App.css';
 import React, { Component } from 'react';
 
 class Nav extends Component {
+  /*
   // state = {
   //   list: []
   // }
@@ -19,11 +20,13 @@ class Nav extends Component {
     });
 
   }
-  
+  */
+
+
   render() {
 
     let listTages = [];
-    var currentList = this.state.list;
+    var currentList = this.props.list; //state >> props : 부모 클래스에서 속성값을 받아오기때문에 state가 아닌 props
     /* 
     this.state.list
     << for 반복문으로 >>
@@ -92,8 +95,19 @@ class App extends Component { //to use constructor, need to be class component
   constructor(props){
     super(props);
     this.state = {
-      article: {title: 'Welcome', desc:'Hello, React & Ajax'} //initialize
+      article: {title: 'Welcome', desc:'Hello, React & Ajax'}, //initialize
+      list: []
     }
+  }
+
+  //기존 Nav에서 할 일을 부모 클래스에서 실행.
+  componentDidMount(){
+    fetch('./data/list.json')
+    .then( result => result.json() )
+    .then((data) => {
+      this.setState({list: data})
+    });
+
   }
 
   render(){
@@ -102,6 +116,7 @@ class App extends Component { //to use constructor, need to be class component
         <h1>Web</h1>
 
         <Nav
+          list = {this.state.list}
           onClick = {id => {
             // fetch('./data/'+ id +'.json')
             fetch(`./data/${id}.json`)
