@@ -6,7 +6,8 @@ export default class DisplayNumberRoot extends Component {
     return (
       <div>
         <h2>DisplayNumber Root</h2>
-        <DisplayNumber number={this.props.number}></DisplayNumber>
+        {/* <DisplayNumber number={this.props.number}></DisplayNumber> //redux 사용 X.ver */}
+        <DisplayNumber></DisplayNumber>
       </div>
     )
   }

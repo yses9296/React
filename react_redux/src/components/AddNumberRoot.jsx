@@ -6,13 +6,17 @@ export default class AddNumberRoot extends Component {
     return (
       <div>
         <h2>AddNumber Root</h2>
+        {/* 
         <AddNumber
-        //  onClick={
-        //   size => (
-        //       this.props.onClick(size)
-        //   )
-        // }
+          onClick={
+            size => (
+                this.props.onClick(size)
+            )
+          }
         ></AddNumber>
+        // redux 사용 X.ver 
+        */}
+        <AddNumber></AddNumber>
       </div>
     )
   }

@@ -19,7 +19,7 @@ export default class AddNumber extends Component {
         <input type="button" value="+" 
             onClick={ 
                 size => (
-                    // this.props.onClick(this.state.size) //redux 사용X
+                    // this.props.onClick(this.state.size) //redux 사용 X.ver
                     store.dispatch({type:'INCREAMENT', size: this.state.size})
                 )
             }
