@@ -13,11 +13,13 @@ class App extends Component {
     return (
       <div className="App">
       <h1>Root (App Component) </h1>
-      <AddNumberRoot onClick={
-          size => (
-            this.setState({number: this.state.number + size})
-          )
-      }></AddNumberRoot>
+      <AddNumberRoot 
+        // onClick={
+        //   size => (
+        //     this.setState({number: this.state.number + size})
+        //   )
+        // }
+      ></AddNumberRoot>
       <DisplayNumberRoot number={this.state.number}></DisplayNumberRoot>
     </div>
     )
