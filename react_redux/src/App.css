@@ -1,0 +1,30 @@
+* { 
+  margin: 0; 
+  padding: 0;
+  box-sizing: border-box;
+  color: darkcyan;
+  font-size: 24px;
+}
+
+body {
+  width: 80%;
+  margin: 0 auto;
+  border: 3px solid rgba(98, 215, 238, 0.867); 
+  padding: 30px 20px;
+}
+
+.App {
+  border: 3px solid rgba(98, 215, 238, 0.867); 
+  padding: 30px 10px;
+}
+
+.App > div {
+  border: 3px solid rgba(98, 215, 238, 0.867); 
+  padding: 30px 10px;
+  margin: 10px;
+}
+.App > div > div {
+  border: 3px solid rgba(98, 215, 238, 0.867); 
+  padding: 30px 10px;
+  margin: 10px;
+}
