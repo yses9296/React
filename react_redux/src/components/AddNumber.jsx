@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import store from '../store';
 
 export default class AddNumber extends Component {
     state ={
@@ -18,7 +19,8 @@ export default class AddNumber extends Component {
         <input type="button" value="+" 
             onClick={ 
                 size => (
-                    this.props.onClick(this.state.size)
+                    // this.props.onClick(this.state.size) //redux 사용X
+                    store.dispatch({type:'INCREAMENT', size: this.state.size})
                 )
             }
         />
